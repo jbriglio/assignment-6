@@ -1,0 +1,107 @@
+---
+title: "mapofbude"
+author: "Janie Briglio"
+date: "3/26/2018"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+adding required packages 
+```{r, echo=FALSE}
+library(ggmap)
+library(tidyverse)
+library(maps)
+library(mapproj)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+###Different Types of Maps 
+
+####Road map of bude
+```{r, echo=FALSE}
+map.1 <- get_map(location = c(-4.5413, 50.82435), zoom = 14, maptype = "roadmap")
+ggmap(map.1)
+```
+
+####Watercolor Map of Bude
+```{r, echo=FALSE}
+map.2 <- get_map(location = c(-4.5413, 50.82435), zoom = 14, maptype = "watercolor")
+ggmap(map.2)
+```
+
+###Locations
+
+#####Map of All Locations
+Key: 
+red- Bude North Cornwall Cricket Club 
+blue- Crooklets Beach
+green- Summerleaze Beach 
+yellow- Crooklets Inn (pub)
+
+#####Regular Map
+```{r, echo=FALSE}
+ggmap(map.1) +
+  geom_point(
+    aes(x = -4.552577 , y = 50.83386),
+    color = "red", size = 3) +
+  geom_point(
+    aes(x = -4.553923 , y = 50.83613),
+    color = "blue", size = 3) +
+  geom_point(
+    aes(x = -4.551326 , y = 50.83099),
+    color = "green", size = 3) +
+  geom_point(
+    aes(x = -4.551132, y = 50.83597),
+    color = "yellow", size = 3)
+```
+
+#####Watercolor map
+```{r, echo=FALSE}
+ggmap(map.2) +
+  geom_point(
+    aes(x = -4.552577 , y = 50.83386),
+    color = "red", size = 3) +
+  geom_point(
+    aes(x = -4.553923 , y = 50.83613),
+    color = "blue", size = 3) +
+  geom_point(
+    aes(x = -4.551326 , y = 50.83099),
+    color = "green", size = 3) +
+  geom_point(
+    aes(x = -4.551132, y = 50.83597),
+    color = "yellow", size = 3)
+```
+
+
+###Map from Crooklets Inn to the Bude North Cornwall Cricket Club 
+
+####Regular Map
+```{r, echo=TRUE}
+from <- "Crooklet's Inn"
+to <- "Bude North Cornwall Cricket Club"
+route_df <- route(from, to, structure = "route")
+ggmap(map.1) +  
+  geom_path(
+    aes(x = lon, y = lat), colour = "red", size = 1.5,
+    data = route_df, lineend = "round"
+  )
+```
+
+####Watercolor
+```{r, echo=FALSE}
+from <- "Crooklet's Inn"
+to <- "Bude North Cornwall Cricket Club"
+route_df <- route(from, to, structure = "route")
+ggmap(map.2) +  
+  geom_path(
+    aes(x = lon, y = lat), colour = "red", size = 1.5,
+    data = route_df, lineend = "round"
+  )
+```
+
+###Images 
+
+![Bude North Cornwall Cricket Club](cricket.png)
+![Crooklet's Beach](crooklets-beach.png)
+![Summerleaze Beach](summerleaze.png)
+![Crooklets's Inn](crooklets-inn.png)
