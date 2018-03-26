@@ -2,7 +2,9 @@
 title: "Map of Bude"
 author: "Janie Briglio"
 date: "3/15/2018"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 adding required packages 
 ```{r}
@@ -33,39 +35,74 @@ red- Bude North Cornwall Cricket Club
 blue- Crooklets Beach
 green- Summerleaze Beach 
 yellow- Crooklets Inn (pub)
+purple- Edgcumbe Hotel
+gray- LSG House Hotel
 
 #####regular map
 ```{r}
+# Change by Hongyi He
+# Add two hotel
+# hotel 1
+Edgcumbe_Hotel <- geocode("19 Summerleaze Cres, Bude EX23 8HJ, UK")
+
+# hotel 2
+LSG_House <- geocode("7 Burn View, Bude EX23 8BY, UK")
+
+
 ggmap(map.1) +
   geom_point(
-    aes(x = -4.552577 , y = 50.83386),
-    color = "red", size = 3) +
+    aes(x = -4.552577, y = 50.83386),
+    color = "red", size = 3
+  ) +
   geom_point(
-    aes(x = -4.553923 , y = 50.83613),
-    color = "blue", size = 3) +
+    aes(x = -4.553923, y = 50.83613),
+    color = "blue", size = 3
+  ) +
   geom_point(
-    aes(x = -4.551326 , y = 50.83099),
-    color = "green", size = 3)+
+    aes(x = -4.551326, y = 50.83099),
+    color = "green", size = 3
+  ) +
   geom_point(
     aes(x = -4.551132, y = 50.83597),
-    color = "yellow", size = 3)
+    color = "yellow", size = 3
+  ) +
+  geom_point(
+    aes(x = -4.548689, y = 50.83139),
+    color = "purple", size = 3
+  ) +
+  geom_point(
+    aes(x = -4.544691, y = 50.83184),
+    color = "gray", size = 3
+  )
 ```
 
 ##### water color map
 ```{r}
 ggmap(map.2) +
   geom_point(
-    aes(x = -4.552577 , y = 50.83386),
-    color = "red", size = 3) +
+    aes(x = -4.552577, y = 50.83386),
+    color = "red", size = 3
+  ) +
   geom_point(
-    aes(x = -4.553923 , y = 50.83613),
-    color = "blue", size = 3) +
+    aes(x = -4.553923, y = 50.83613),
+    color = "blue", size = 3
+  ) +
   geom_point(
-    aes(x = -4.551326 , y = 50.83099),
-    color = "green", size = 3)+
+    aes(x = -4.551326, y = 50.83099),
+    color = "green", size = 3
+  ) +
   geom_point(
     aes(x = -4.551132, y = 50.83597),
-    color = "yellow", size = 3)
+    color = "yellow", size = 3
+  ) +
+  geom_point(
+    aes(x = -4.548689, y = 50.83139),
+    color = "purple", size = 3
+  ) +
+  geom_point(
+    aes(x = -4.544691, y = 50.83184),
+    color = "gray", size = 3
+  )
 ```
 
 
@@ -103,4 +140,7 @@ ggmap(map.2) +
 
 ![Summerleaze Beach](summerleaze.png)
 
-![Crooklets's Inn](crooklets-inn.png)
+
+![Edgcumbe Hotel](D:/Master/Study/R¿Î/ggmap/5.jpg)
+
+![LSG House](D:/Master/Study/R¿Î/ggmap/6.jpg)

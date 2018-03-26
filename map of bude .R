@@ -38,6 +38,15 @@ ggmap(map.1) +
     aes(x = -4.551132 , y = 50.83597),
     color = "yellow", size = 3)
 
+#Change by Hongyi He
+##Add two hotel
+#hotel 1
+Edgcumbe_Hotel <- geocode("19 Summerleaze Cres, Bude EX23 8HJ, UK")
+Edgcumbe_Hotel <- fortify(Edgcumbe_Hotel)
+
+#hotel 2 
+LSG_House <- geocode("7 Burn View, Bude EX23 8BY, UK")
+LSG_House <- fortify(LSG_House)
 
 #all together on regular map 
 ggmap(map.1) +
@@ -52,7 +61,11 @@ ggmap(map.1) +
     color = "green", size = 3) +
   geom_point(
     aes(x = -4.551132, y = 50.83597),
-    color = "yellow", size = 3)
+    color = "yellow", size = 3) +
+  geom_point(
+    aes(x = Edgcumbe_Hotel[1], y = Edgcumbe_Hotel[2]),
+    color = "purple", size = 3)
+  
 
 #map from crooklets inn to the bude north cornwall cricket club on regular 
 from <- "Crooklet's Inn"
